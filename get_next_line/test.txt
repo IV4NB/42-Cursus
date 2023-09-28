@@ -1,0 +1,5 @@
+Este es un archivo de texto de ejemplo.
+Puedes agregar cualquier texto que desees aqui.
+Puedes usarlo para probar tus programas de lectura y escritura de archivos en C.
+Hola
+AKHSDALSD
