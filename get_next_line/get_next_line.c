@@ -86,7 +86,7 @@ char *reader(int fd, char *data)
         data = ft_strjoin(data, buffer);
     }
     free(buffer);
-    if(bytes_read == 0)
+    if(bytes_read == 0 && ft_strlen(data) == 0)
         return NULL;
     return (data);
 }
