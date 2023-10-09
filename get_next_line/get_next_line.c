@@ -68,8 +68,7 @@ char	*ft_strjoin(char *s1, char *s2)
 char *reader(int fd, char *data)
 {
     char *buffer;
-    int bytes_read;
-    bytes_read = 1;
+    static int bytes_read = 1;
     buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
     if (!buffer)
         return NULL;
@@ -83,11 +82,12 @@ char *reader(int fd, char *data)
             return NULL;
         }
         buffer[bytes_read] = '\0';
-        data = ft_strjoin(data, buffer);
+        if(bytes_read > 0)
+            data = ft_strjoin(data, buffer);
     }
     free(buffer);
-    if(bytes_read == 0 && ft_strlen(data) == 0)
-        return NULL;
+    /*if(bytes_read == 0 && ft_strlen(data) == 0)
+        return NULL;*/
     return (data);
 }
 
