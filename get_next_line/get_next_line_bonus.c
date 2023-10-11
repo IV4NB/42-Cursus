@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iballest <iballest@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 10:29:57 by iballest          #+#    #+#             */
-/*   Updated: 2023/10/11 17:03:06 by iballest         ###   ########.fr       */
+/*   Created: 2023/10/11 17:06:28 by iballest          #+#    #+#             */
+/*   Updated: 2023/10/11 17:06:31 by iballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,17 @@ char	*ft_update_data(char *old_data)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*data;
+	static char	*data[1024];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	data = reader(fd, data);
-	if (data == NULL)
+	data[fd] = reader(fd, data[fd]);
+	if (data[fd] == NULL)
 	{
-		free(data);
+		free(data[fd]);
 		return (NULL);
 	}
-	line = ft_extract_line(data);
-	data = ft_update_data(data);
+	line = ft_extract_line(data[fd]);
+	data[fd] = ft_update_data(data[fd]);
 	return (line);
 }
